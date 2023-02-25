@@ -8,6 +8,9 @@ function App() {
       <Calci />
       <hr />
       <StudCrud />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

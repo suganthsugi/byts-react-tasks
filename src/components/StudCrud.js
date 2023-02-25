@@ -11,6 +11,11 @@ class StudCrud extends React.Component{
             mark:"",
             address:"",
             need:"",
+            updateneed:"",
+            updatebtn:"",
+            updateChoice:"",
+            upname:"",
+            upage:"",
             res:<></>,
             studs:[]
         }
@@ -86,6 +91,66 @@ class StudCrud extends React.Component{
         // })
         // this.setState({res:<p>{q.name+" "+q.age}</p>})
     }
+    updateName(){
+        for (let i = 0; i < this.state.studs.length; i++) {
+            if(this.state.studs[i].rno===this.state.updateneed){
+                var ts=this.state.studs
+                ts[i].name=this.state.upname;
+                this.setState({
+                    studs:ts
+                });
+            }
+        }
+    }
+    updateAge(){
+        for (let i = 0; i < this.state.studs.length; i++) {
+            if(this.state.studs[i].rno===this.state.updateneed){
+                var ts=this.state.studs
+                ts[i].age=this.state.upage;
+                this.setState({
+                    studs:ts
+                });
+            }
+        }
+    }
+    showUBY(choice){
+        if(choice===1){
+            this.setState({
+                updateChoice:(
+                    <>
+                    <input type="text" name="uname" id="uname" onChange={(e)=>this.setState({upname:e.target.value})}/><button onClick={()=>this.updateName()}>Update Name</button>
+                    </>
+                )
+            })
+        }
+        if(choice===2){
+            this.setState({
+                updateChoice:(
+                    <>
+                    <input type="text" name="uname" id="uname" onChange={(e)=>this.setState({upage:e.target.value})}/><button onClick={()=>this.updateAge()}>Update Age</button>
+                    </>
+                )
+            })
+        }
+    }
+    canshow(){
+        var q=this.state.studs.find((obj)=>obj.rno===this.state.updateneed);
+        if(q===undefined){
+            this.setState({
+                updatebtn:"not found"
+            })
+        }
+        else{
+            this.setState({
+                updatebtn:(
+                    <>
+                    <button onClick={()=>this.showUBY(1)}>Name</button>
+                    <button onClick={()=>this.showUBY(2)}>Age</button>
+                    </>
+                )
+            })
+        }
+    }
     render(){
         return(
             <React.Fragment>
@@ -96,13 +161,6 @@ class StudCrud extends React.Component{
                 <label htmlFor="mark">Mark : </label><input type="text" id="mark" onChange={(e)=>{this.setState({mark:e.target.value})}} value={this.state.mark}/><br /><br /> 
                 <label htmlFor="address">Address : </label><input type="text" id="address" onChange={(e)=>{this.setState({address:e.target.value})}} value={this.state.address}/><br /><br /> 
                 <button onClick={()=>this.save()}>Submit</button> <button onClick={(e)=>{this.setState({name:"", rno:"", age:"", mark:"", address:""})}}>Clear</button>
-                <br /><br />
-                <h3>Search by rollno</h3>
-                <label htmlFor="scr"></label>
-                <input type="text" id="scr" onChange={(e)=>{this.setState({need:e.target.value})}} value={this.state.need}/>
-                <button onClick={()=>this.search()}>Search</button>
-                <br /><br />
-                {this.state.res}
                 <br /><br />
                 <table>
                     <tbody>
@@ -116,6 +174,23 @@ class StudCrud extends React.Component{
                         {this.disp()}
                     </tbody>
                 </table>
+
+                <br /><br />
+                <h3>Search by rollno</h3>
+                <label htmlFor="scr"></label>
+                <input type="text" id="scr" onChange={(e)=>{this.setState({need:e.target.value})}} value={this.state.need}/>
+                <button onClick={()=>this.search()}>Search</button>
+                <br /><br />
+                {this.state.res}
+
+                <br /><br />
+                <h3>Update User</h3>
+                <input type="text" id="scr" onChange={(e)=>{this.setState({updateneed:e.target.value})}} value={this.state.updateneed}/>
+                <button onClick={()=>this.canshow()}>Update</button>
+                <br /><br />
+                {this.state.updatebtn}
+                <br /><br />
+                {this.state.updateChoice}
             </React.Fragment>
         );
     }
