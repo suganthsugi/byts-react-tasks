@@ -89,6 +89,7 @@ class StudCrud extends React.Component{
     render(){
         return(
             <React.Fragment>
+                <h2>Student CRUD</h2>
                 <label htmlFor="name">Name : </label><input type="text" id="name" onChange={(e)=>{this.setState({name:e.target.value})}} value={this.state.name}/><br /><br /> 
                 <label htmlFor="age">Age  : </label><input type="text" id="age" onChange={(e)=>{this.setState({age:e.target.value})}} value={this.state.age}/><br /><br /> 
                 <label htmlFor="rollno">Roll No : </label><input type="text" id="rollno" onChange={(e)=>{this.setState({rno:e.target.value})}} value={this.state.rno}/><br /><br /> 
