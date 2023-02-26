@@ -36,18 +36,14 @@ class StudCrud extends React.Component{
         console.log(this.state.studs);
     }
     delStud(val){
-       var tstuds = []
-       for (let i = 0; i < this.state.studs.length; i++) {
-        if(this.state.studs[i]!==val){
-            tstuds.push(this.state.studs[i]);
-        }
-       }
+        var ind = this.state.studs.findIndex((obj)=>obj.rno===val)
+        this.state.studs.splice(ind, ind);
        this.setState({
-        studs:tstuds
+        studs:this.state.studs
        })
     }
     disp(){
-        return this.state.studs.map((val)=><tr><td>{val.name}</td><td>{val.age}</td><td>{val.rno}</td><tr><button onClick={()=>this.delStud(val)}>Del</button></tr></tr>);
+        return this.state.studs.map((val)=><tr><td>{val.name}</td><td>{val.age}</td><td>{val.rno}</td><tr><button onClick={()=>this.delStud(val.rno)}>Del</button></tr></tr>);
     }
     search(){
         console.log(this.state.need)
