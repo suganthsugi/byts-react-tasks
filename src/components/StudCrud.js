@@ -43,7 +43,14 @@ class StudCrud extends React.Component{
        })
     }
     disp(){
-        return this.state.studs.map((val)=><tr><td>{val.name}</td><td>{val.age}</td><td>{val.rno}</td><tr><button onClick={()=>this.delStud(val.rno)}>Del</button></tr></tr>);
+        return this.state.studs.map((val)=>
+        <tr>
+            <td>{val.name}</td>
+            <td>{val.age}</td>
+            <td>{val.rno}</td>
+            <td><button onClick={()=>this.delStud(val.rno)}>Del</button></td>
+        </tr>);
+        
     }
     search(){
         console.log(this.state.need)
@@ -57,26 +64,28 @@ class StudCrud extends React.Component{
         console.log(q);
         // var tres=`name:${q.name}\nrno:${q.rno}\nage:${q.age}\nmark:${q.mark}\naddress:${q.address}`
         const restable = (
-            <table style={{ display: "inline-block" }}>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Roll no</th>
-                    <th>Age</th>
-                    <th>Mark</th>
-                    <th>Address</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>{q.name}</td>
-                    <td>{q.rno}</td>
-                    <td>{q.age}</td>
-                    <td>{q.mark}</td>
-                    <td>{q.address}</td>
-                </tr>
-                </tbody>
-            </table>
+            <center>
+                <table style={{ display: "inline-block" }}>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Roll no</th>
+                        <th>Age</th>
+                        <th>Mark</th>
+                        <th>Address</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{q.name}</td>
+                        <td>{q.rno}</td>
+                        <td>{q.age}</td>
+                        <td>{q.mark}</td>
+                        <td>{q.address}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </center>
         )
         console.log(restable);
         this.setState({
@@ -158,6 +167,7 @@ class StudCrud extends React.Component{
                 <label htmlFor="address">Address : </label><input type="text" id="address" onChange={(e)=>{this.setState({address:e.target.value})}} value={this.state.address}/><br /><br /> 
                 <button onClick={()=>this.save()}>Submit</button> <button onClick={(e)=>{this.setState({name:"", rno:"", age:"", mark:"", address:""})}}>Clear</button>
                 <br /><br />
+                <center>
                 <table>
                     <tbody>
                         <tr>
@@ -170,7 +180,7 @@ class StudCrud extends React.Component{
                         {this.disp()}
                     </tbody>
                 </table>
-
+                </center>
                 <br /><br />
                 <h3>Search by rollno</h3>
                 <label htmlFor="scr"></label>

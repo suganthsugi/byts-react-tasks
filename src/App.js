@@ -4,6 +4,7 @@ import StudCrud from './components/StudCrud';
 import Counter from './components/Counter';
 import Counter5 from './components/Counter5';
 import CurrencyConvertor from './components/CurrencyConvertor';
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Counter5 />
       <hr />
       <CurrencyConvertor />
+      <hr />
+      <Cart />
       <hr />
       <Calci />
       <hr />
